@@ -1,7 +1,14 @@
 def parse_invoices(invoice_data)
-  pattern = /\d/
+  pattern = /^\d{4}/
   invoice = invoice_data.scan(pattern)
-  invoice.flatten
+
+  if invoice_data =~ pattern
+    puts "#{invoice_data}"
+  else
+    puts "Not valid data."
+  end
+
+
 end
 
 invoice_entries = <<-INVOICES
@@ -11,5 +18,3 @@ invoice_entries = <<-INVOICES
 INVOICES
 
 parse_invoices(invoice_entries)
-
-p "Date: #{}, Invoice Number #{}, Client: #{}, Amount: #{}"
